@@ -54,10 +54,15 @@ class Vehicle():
     def __init__(self, id):
         self.id = id
         self.rides = []
+        self.completion_time = 0
 
     def add_ride(self, ride):
+        get_score_of_journey(self)
         self.rides.append(ride)
 
+    """
+    Calculates the score and updates the earliest completion time
+    """
     def get_score_of_jounrey(self):
         time = 0
         pos = (0,0)
@@ -83,6 +88,7 @@ class Vehicle():
 
             #if you have run out of time
             if (time > steps):
+                self.completion_time = time
                 break
 
             #otherwise update the score
@@ -90,8 +96,15 @@ class Vehicle():
             
             #set the final position after travelling
             pos = ride.end_point
+
+            #set the completion time
+            self.completion_time = time
     
         return score
 
+#for every ride from earliest to lates
 
-
+v0 = Vehicle(0)
+v0.add_ride(rides[0])
+v1.add_ride(rides[1])
+v1.add_ride(rides[2])
